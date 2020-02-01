@@ -26,6 +26,13 @@ const notes = require("./notes.js");
 // 2. If no note is removed, print "No note found!" with a red background
 //
 //
+//
+// Goal: Refactor all functions
+//
+// 1. If function is a method, use ES6 method definition syntax
+// 2. Otherwise, use most concise arrow functions possible
+// 3. Test your work
+
 // Customize yargs version
 yargs.version("1.1.0");
 
@@ -44,7 +51,7 @@ yargs.command({
       type: "string"
     }
   },
-  handler: function(argv) {
+  handler: argv => {
     notes.addNote(argv.title, argv.body);
     console.log("Title: " + argv.title + "\nBody: " + argv.body);
   }
@@ -61,17 +68,14 @@ yargs.command({
     }
   },
   describe: "Remove a note",
-  handler: function(argv) {
-    notes.removeNote(argv.title, argv.body);
-    console.log("Title: " + argv.title + "\nBody: " + argv.body);
-  }
+  handler: argv => notes.removeNote(argv.title, argv.body)
 });
 
 // Create remove command
 yargs.command({
   command: "list",
   describe: "Remove a note",
-  handler: function() {
+  handler() {
     console.log("listing notes!");
   }
 });
@@ -80,7 +84,7 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "Remove a note",
-  handler: function() {
+  handler() {
     console.log("reading a note!");
   }
 });
